@@ -125,8 +125,50 @@ to{opacity:1;transform:translateY(0);}
 </div>
 
 <script>
-const questions = [...Array(42).keys()].map(i=>"Câu hỏi "+(i+1));
-
+const questions = [
+"Tôi thích sửa chữa máy móc, thiết bị.",
+"Tôi thích nghiên cứu khoa học, thí nghiệm.",
+"Tôi thích thuyết phục và lãnh đạo người khác.",
+"Tôi thích giúp đỡ người khác giải quyết vấn đề.",
+"Tôi thích kinh doanh hoặc bán hàng.",
+"Tôi thích làm việc với sổ sách, giấy tờ.",
+"Tôi thích làm việc ngoài trời.",
+"Tôi thích vẽ, thiết kế hoặc sáng tạo nghệ thuật.",
+"Tôi thích làm việc với con số và dữ liệu.",
+"Tôi thích quản lý và điều hành công việc.",
+"Tôi thích tìm hiểu cách mọi thứ vận hành.",
+"Tôi thích chăm sóc và hỗ trợ người khác.",
+"Tôi thích tư vấn, hướng dẫn người khác.",
+"Tôi thích vận hành máy móc.",
+"Tôi thích sắp xếp và lưu trữ hồ sơ.",
+"Tôi thích tham gia các hoạt động kinh doanh.",
+"Tôi thích biểu diễn nghệ thuật.",
+"Tôi thích phân tích vấn đề logic.",
+"Tôi thích khởi nghiệp.",
+"Tôi thích làm việc nhóm và hỗ trợ đồng đội.",
+"Tôi thích làm thí nghiệm.",
+"Tôi thích sửa chữa điện, cơ khí.",
+"Tôi thích sáng tác âm nhạc hoặc viết lách.",
+"Tôi thích làm kế toán hoặc hành chính.",
+"Tôi thích làm việc theo quy trình rõ ràng.",
+"Tôi thích nghiên cứu công nghệ mới.",
+"Tôi thích thiết kế thời trang hoặc mỹ thuật.",
+"Tôi thích tham gia công tác xã hội.",
+"Tôi thích lãnh đạo dự án.",
+"Tôi thích làm nông nghiệp hoặc kỹ thuật.",
+"Tôi thích sáng tạo nội dung.",
+"Tôi thích lắp ráp thiết bị.",
+"Tôi thích làm việc văn phòng.",
+"Tôi thích quản lý nhân sự.",
+"Tôi thích làm công việc kiểm tra, giám sát.",
+"Tôi thích kinh doanh tự do.",
+"Tôi thích vận hành công cụ kỹ thuật.",
+"Tôi thích làm việc với hệ thống dữ liệu.",
+"Tôi thích nghiên cứu chuyên sâu.",
+"Tôi thích làm giáo viên hoặc huấn luyện viên.",
+"Tôi thích thiết kế đồ họa.",
+"Tôi thích điều hành doanh nghiệp."
+];
 const mapping = {
 1:"R",2:"I",3:"E",4:"S",5:"E",6:"C",7:"R",8:"A",9:"C",10:"E",
 11:"I",12:"S",13:"S",14:"R",15:"C",16:"E",17:"A",18:"I",
@@ -179,20 +221,19 @@ result.innerHTML=`
 
 fetch("https://script.google.com/macros/s/AKfycbxUxvfExq2J6NIIwUDS4aNGuqOiuDpOOC1ppu1f2ZInX9-ZAYVEDuAlQcWtQDX42iYG/exec",{
 method:"POST",
- mode: "no-cors",
-  headers: {
-    "Content-Type": "application/json"
-  },
+mode:"no-cors",
+headers:{
+"Content-Type":"application/json"
+},
 body:JSON.stringify({
 name:document.getElementById("name").value,
 phone:document.getElementById("phone").value,
-scores:scores,
+R:scores.R,
+I:scores.I,
+A:scores.A,
+S:scores.S,
+E:scores.E,
+C:scores.C,
 result:max
 })
 });
-}
-</script>
-
-</body>
-</html>
-
