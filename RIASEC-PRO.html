@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>RIASEC Career Test</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,#1e3c72,#2a5298);
+color:#333;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:40px 20px;
+}
+
+.card{
+background:white;
+border-radius:20px;
+padding:30px;
+box-shadow:0 15px 40px rgba(0,0,0,0.2);
+animation:fadeIn 0.6s ease;
+}
+
+h1{text-align:center;color:#1e3c72;}
+
+.question{
+background:#f4f7fb;
+margin:10px 0;
+padding:15px;
+border-radius:12px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+transition:0.3s;
+}
+
+.question:hover{
+transform:scale(1.02);
+background:#e3f2fd;
+}
+
+input[type="checkbox"]{
+transform:scale(1.4);
+}
+
+button{
+width:100%;
+margin-top:20px;
+padding:15px;
+border:none;
+border-radius:12px;
+background:#1e88e5;
+color:white;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:#1565c0;
+}
+
+.progress{
+height:10px;
+background:#ddd;
+border-radius:5px;
+margin:20px 0;
+}
+
+.progress-bar{
+height:10px;
+width:0%;
+background:#4CAF50;
+border-radius:5px;
+transition:0.3s;
+}
+
+.result{
+display:none;
+margin-top:30px;
+padding:20px;
+border-radius:15px;
+text-align:center;
+color:white;
+}
+
+.result img{
+width:150px;
+margin:15px 0;
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<div class="card">
+<h1>Trắc nghiệm định hướng nghề nghiệp RIASEC</h1>
+
+<input type="text" id="name" placeholder="Họ và tên" required style="width:100%;padding:10px;margin-bottom:10px;">
+<input type="text" id="phone" placeholder="Số điện thoại" required style="width:100%;padding:10px;">
+
+<div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+
+<div id="questions"></div>
+
+<button onclick="calculate()">Xem kết quả</button>
+
+<div id="result" class="result"></div>
+
+</div>
+</div>
+
+<script>
+const questions = [...Array(42).keys()].map(i=>"Câu hỏi "+(i+1));
+
+const mapping = {
+1:"R",2:"I",3:"E",4:"S",5:"E",6:"C",7:"R",8:"A",9:"C",10:"E",
+11:"I",12:"S",13:"S",14:"R",15:"C",16:"E",17:"A",18:"I",
+19:"E",20:"S",21:"I",22:"R",23:"A",24:"C",25:"C",26:"I",
+27:"A",28:"S",29:"E",30:"R",31:"A",32:"R",33:"C",34:"E",
+35:"C",36:"E",37:"R",38:"C",39:"I",40:"S",41:"A",42:"E"
+};
+
+const images={
+R:"https://cdn-icons-png.flaticon.com/512/1995/1995470.png",
+I:"https://cdn-icons-png.flaticon.com/512/2784/2784445.png",
+A:"https://cdn-icons-png.flaticon.com/512/2972/2972185.png",
+S:"https://cdn-icons-png.flaticon.com/512/3135/3135768.png",
+E:"https://cdn-icons-png.flaticon.com/512/1999/1999625.png",
+C:"https://cdn-icons-png.flaticon.com/512/942/942748.png"
+};
+
+const container=document.getElementById("questions");
+
+questions.forEach((q,index)=>{
+container.innerHTML+=`
+<div class="question">
+${index+1}. ${q}
+<input type="checkbox" id="q${index+1}" onchange="updateProgress()">
+</div>`;
+});
+
+function updateProgress(){
+let checked=document.querySelectorAll("input:checked").length;
+document.getElementById("progressBar").style.width=(checked/42)*100+"%";
+}
+
+function calculate(){
+let scores={R:0,I:0,A:0,S:0,E:0,C:0};
+for(let i=1;i<=42;i++){
+if(document.getElementById("q"+i).checked){
+scores[mapping[i]]++;
+}
+}
+let max=Object.keys(scores).reduce((a,b)=>scores[a]>scores[b]?a:b);
+
+let result=document.getElementById("result");
+result.style.display="block";
+result.style.background="#1e3c72";
+result.innerHTML=`
+<h2>Bạn thuộc nhóm ${max}</h2>
+<img src="${images[max]}">
+<p>R:${scores.R} | I:${scores.I} | A:${scores.A} | S:${scores.S} | E:${scores.E} | C:${scores.C}</p>
+`;
+
+fetch("DAN_LINK_WEB_APP_CUA_BAN",{
+method:"POST",
+body:JSON.stringify({
+name:document.getElementById("name").value,
+phone:document.getElementById("phone").value,
+scores:scores,
+result:max
+})
+});
+}
+</script>
+
+</body>
+</html>
