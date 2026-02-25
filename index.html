@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <head>
 <meta charset="UTF-8">
 <title>RIASEC Career Test</title>
@@ -11,7 +12,11 @@
 body{
 margin:0;
 font-family:'Poppins',sans-serif;
-background:linear-gradient(135deg,#1e3c72,#2a5298);
+background:
+linear-gradient(135deg,#0d47a1,#1976d2),
+url('pattern.png');
+background-size:cover;
+background-attachment:fixed;
 color:#333;
 }
 
@@ -25,7 +30,7 @@ padding:40px 20px;
 background:white;
 border-radius:20px;
 padding:30px;
-box-shadow:0 15px 40px rgba(0,0,0,0.2);
+box-shadow:0 15px 40px rgba(255,193,7,0.25);
 animation:fadeIn 0.6s ease;
 }
 
@@ -140,7 +145,9 @@ Không có câu trả lời nào là sai. Hãy trả lời trung thực theo s�
 
 <button onclick="calculate()">Xem kết quả</button>
 
-<div id="result" class="result"></div>
+<div id="result" class="result">
+   <canvas id="radarChart" style="margin-top:30px;"></canvas>
+</div>
 
 </div>
 </div>
@@ -221,6 +228,45 @@ S:${scores.S} | E:${scores.E} | C:${scores.C}</p>
 `;
 
 result.innerHTML=html;
+  const ctx = document.getElementById('radarChart');
+
+new Chart(ctx, {
+    type: 'radar',
+    data: {
+        labels: ['R', 'I', 'A', 'S', 'E', 'C'],
+        datasets: [{
+            label: 'Mức độ phù hợp',
+            data: [
+                scores.R,
+                scores.I,
+                scores.A,
+                scores.S,
+                scores.E,
+                scores.C
+            ],
+            backgroundColor: 'rgba(255, 193, 7, 0.3)',
+            borderColor: '#FFC107',
+            borderWidth: 2,
+            pointBackgroundColor: '#1e3c72'
+        }]
+    },
+    options: {
+        scales: {
+            r: {
+                angleLines: { color: '#ccc' },
+                grid: { color: '#ddd' },
+                pointLabels: { color: '#fff' },
+                suggestedMin: 0,
+                suggestedMax: 10
+            }
+        },
+        plugins: {
+            legend: {
+                labels: { color: '#fff' }
+            }
+        }
+    }
+});
 
 fetch("https://script.google.com/macros/s/AKfycbzFZ6L2mo5ARv9qxPmbUxYriDOKs6y-PV33EKnHuZHG17krsjSVN3QKq-ISwbCT3EQ/exec",{
 method:"POST",
@@ -243,4 +289,5 @@ result:topGroups.join(" & ")
 
 </body>
 </html>
+
 
