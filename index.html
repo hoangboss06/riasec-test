@@ -177,8 +177,12 @@ result.innerHTML=`
 <p>R:${scores.R} | I:${scores.I} | A:${scores.A} | S:${scores.S} | E:${scores.E} | C:${scores.C}</p>
 `;
 
-fetch("DAN_LINK_WEB_APP_CUA_BAN",{
+fetch("https://script.google.com/macros/s/AKfycbxUxvfExq2J6NIIwUDS4aNGuqOiuDpOOC1ppu1f2ZInX9-ZAYVEDuAlQcWtQDX42iYG/exec",{
 method:"POST",
+ mode: "no-cors",
+  headers: {
+    "Content-Type": "application/json"
+  },
 body:JSON.stringify({
 name:document.getElementById("name").value,
 phone:document.getElementById("phone").value,
@@ -191,3 +195,4 @@ result:max
 
 </body>
 </html>
+
