@@ -31,6 +31,15 @@ animation:fadeIn 0.6s ease;
 
 h1{text-align:center;color:#1e3c72;}
 
+.guide{
+background:#e3f2fd;
+padding:20px;
+border-radius:15px;
+margin-bottom:20px;
+border-left:6px solid #1e88e5;
+animation:fadeIn 0.8s ease;
+}
+
 .question{
 background:#f4f7fb;
 margin:10px 0;
@@ -86,15 +95,19 @@ transition:0.3s;
 .result{
 display:none;
 margin-top:30px;
-padding:20px;
+padding:25px;
 border-radius:15px;
 text-align:center;
 color:white;
+animation:fadeIn 1s ease;
 }
 
 .result img{
-width:150px;
-margin:15px 0;
+width:100%;
+max-width:350px;
+border-radius:15px;
+margin:20px 0;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
 }
 
 @keyframes fadeIn{
@@ -109,6 +122,14 @@ to{opacity:1;transform:translateY(0);}
 <div class="container">
 <div class="card">
 <h1>Trắc nghiệm định hướng nghề nghiệp RIASEC</h1>
+
+<div class="guide">
+<h3>Hướng dẫn</h3>
+<p>
+Hãy đọc từng câu dưới đây. Nếu bạn đồng ý với câu đó, hãy đánh dấu chọn.
+Không có câu trả lời nào là sai. Hãy trả lời trung thực theo sở thích của bạn.
+</p>
+</div>
 
 <input type="text" id="name" placeholder="Họ và tên" required style="width:100%;padding:10px;margin-bottom:10px;">
 <input type="text" id="phone" placeholder="Số điện thoại" required style="width:100%;padding:10px;">
@@ -125,50 +146,8 @@ to{opacity:1;transform:translateY(0);}
 </div>
 
 <script>
-const questions = [
-"Tôi thích sửa chữa máy móc, thiết bị.",
-"Tôi thích nghiên cứu khoa học, thí nghiệm.",
-"Tôi thích thuyết phục và lãnh đạo người khác.",
-"Tôi thích giúp đỡ người khác giải quyết vấn đề.",
-"Tôi thích kinh doanh hoặc bán hàng.",
-"Tôi thích làm việc với sổ sách, giấy tờ.",
-"Tôi thích làm việc ngoài trời.",
-"Tôi thích vẽ, thiết kế hoặc sáng tạo nghệ thuật.",
-"Tôi thích làm việc với con số và dữ liệu.",
-"Tôi thích quản lý và điều hành công việc.",
-"Tôi thích tìm hiểu cách mọi thứ vận hành.",
-"Tôi thích chăm sóc và hỗ trợ người khác.",
-"Tôi thích tư vấn, hướng dẫn người khác.",
-"Tôi thích vận hành máy móc.",
-"Tôi thích sắp xếp và lưu trữ hồ sơ.",
-"Tôi thích tham gia các hoạt động kinh doanh.",
-"Tôi thích biểu diễn nghệ thuật.",
-"Tôi thích phân tích vấn đề logic.",
-"Tôi thích khởi nghiệp.",
-"Tôi thích làm việc nhóm và hỗ trợ đồng đội.",
-"Tôi thích làm thí nghiệm.",
-"Tôi thích sửa chữa điện, cơ khí.",
-"Tôi thích sáng tác âm nhạc hoặc viết lách.",
-"Tôi thích làm kế toán hoặc hành chính.",
-"Tôi thích làm việc theo quy trình rõ ràng.",
-"Tôi thích nghiên cứu công nghệ mới.",
-"Tôi thích thiết kế thời trang hoặc mỹ thuật.",
-"Tôi thích tham gia công tác xã hội.",
-"Tôi thích lãnh đạo dự án.",
-"Tôi thích làm nông nghiệp hoặc kỹ thuật.",
-"Tôi thích sáng tạo nội dung.",
-"Tôi thích lắp ráp thiết bị.",
-"Tôi thích làm việc văn phòng.",
-"Tôi thích quản lý nhân sự.",
-"Tôi thích làm công việc kiểm tra, giám sát.",
-"Tôi thích kinh doanh tự do.",
-"Tôi thích vận hành công cụ kỹ thuật.",
-"Tôi thích làm việc với hệ thống dữ liệu.",
-"Tôi thích nghiên cứu chuyên sâu.",
-"Tôi thích làm giáo viên hoặc huấn luyện viên.",
-"Tôi thích thiết kế đồ họa.",
-"Tôi thích điều hành doanh nghiệp."
-];
+const questions = [...Array(42).keys()].map(i=> "Câu hỏi "+(i+1));
+
 const mapping = {
 1:"R",2:"I",3:"E",4:"S",5:"E",6:"C",7:"R",8:"A",9:"C",10:"E",
 11:"I",12:"S",13:"S",14:"R",15:"C",16:"E",17:"A",18:"I",
@@ -178,12 +157,21 @@ const mapping = {
 };
 
 const images={
-R:"https://cdn-icons-png.flaticon.com/512/1995/1995470.png",
-I:"https://cdn-icons-png.flaticon.com/512/2784/2784445.png",
-A:"https://cdn-icons-png.flaticon.com/512/2972/2972185.png",
-S:"https://cdn-icons-png.flaticon.com/512/3135/3135768.png",
-E:"https://cdn-icons-png.flaticon.com/512/1999/1999625.png",
-C:"https://cdn-icons-png.flaticon.com/512/942/942748.png"
+R:"https://images.unsplash.com/photo-1581092160607-ee22621dd758",
+I:"https://images.unsplash.com/photo-1582719478250-c89cae4dc85b",
+A:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+S:"https://images.unsplash.com/photo-1573497161161-c3e73707e25c",
+E:"https://images.unsplash.com/photo-1556761175-4b46a572b786",
+C:"https://images.unsplash.com/photo-1554224155-6726b3ff858f"
+};
+
+const descriptions = {
+R:"Nhóm Thực tế (R). Phù hợp: Cơ khí, Xây dựng, Kỹ thuật.",
+I:"Nhóm Nghiên cứu (I). Phù hợp: Khoa học, Y học, Phân tích dữ liệu.",
+A:"Nhóm Nghệ thuật (A). Phù hợp: Thiết kế, Kiến trúc, Sáng tạo.",
+S:"Nhóm Xã hội (S). Phù hợp: Giáo dục, Điều dưỡng, Tư vấn.",
+E:"Nhóm Quản lý (E). Phù hợp: Kinh doanh, Luật, Marketing.",
+C:"Nhóm Nghiệp vụ (C). Phù hợp: Kế toán, Ngân hàng, Hành chính."
 };
 
 const container=document.getElementById("questions");
@@ -208,23 +196,37 @@ if(document.getElementById("q"+i).checked){
 scores[mapping[i]]++;
 }
 }
-let max=Object.keys(scores).reduce((a,b)=>scores[a]>scores[b]?a:b);
+
+let maxScore = Math.max(...Object.values(scores));
+let topGroups = Object.keys(scores).filter(key => scores[key]===maxScore);
 
 let result=document.getElementById("result");
 result.style.display="block";
 result.style.background="#1e3c72";
-result.innerHTML=`
-<h2>Bạn thuộc nhóm ${max}</h2>
-<img src="${images[max]}">
-<p>R:${scores.R} | I:${scores.I} | A:${scores.A} | S:${scores.S} | E:${scores.E} | C:${scores.C}</p>
+
+let html="";
+
+topGroups.forEach(group=>{
+html+=`
+<h2>Bạn thuộc nhóm ${group}</h2>
+<img src="${images[group]}">
+<p>${descriptions[group]}</p>
+<hr style="margin:25px 0;border:1px solid rgba(255,255,255,0.3);">
 `;
+});
+
+html+=`
+<p><strong>Điểm số:</strong><br>
+R:${scores.R} | I:${scores.I} | A:${scores.A} |
+S:${scores.S} | E:${scores.E} | C:${scores.C}</p>
+`;
+
+result.innerHTML=html;
 
 fetch("https://script.google.com/macros/s/AKfycbzFZ6L2mo5ARv9qxPmbUxYriDOKs6y-PV33EKnHuZHG17krsjSVN3QKq-ISwbCT3EQ/exec",{
 method:"POST",
 mode:"no-cors",
-headers:{
-"Content-Type":"application/json"
-},
+headers:{"Content-Type":"application/json"},
 body:JSON.stringify({
 name:document.getElementById("name").value,
 phone:document.getElementById("phone").value,
@@ -234,13 +236,11 @@ A:scores.A,
 S:scores.S,
 E:scores.E,
 C:scores.C,
-result:max
+result:topGroups.join(" & ")
 })
 });
 }
-  
 </script>
 
 </body>
 </html>
-
