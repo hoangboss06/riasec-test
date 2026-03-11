@@ -324,7 +324,12 @@ method:"POST",
 mode:"no-cors",
 headers:{"Content-Type":"application/json"},
 body:JSON.stringify({
-name:document.getElementById("name").value,
+body:JSON.stringify({
+studentName:document.getElementById("studentName").value,
+class:document.getElementById("class").value,
+school:document.getElementById("school").value,
+teacher:document.getElementById("teacher").value,
+parent:document.getElementById("parent").value,
 phone:document.getElementById("phone").value,
 R:scores.R,
 I:scores.I,
@@ -340,6 +345,7 @@ result:topGroups.join(" & ")
 
 </body>
 </html>
+
 
 
 
