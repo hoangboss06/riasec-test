@@ -116,7 +116,44 @@ box-shadow:0 10px 25px rgba(0,0,0,0.3);
 from{opacity:0;transform:translateY(20px);}
 to{opacity:1;transform:translateY(0);}
 }
+  .info-box{
+margin-bottom:20px;
+}
+
+.info-box input{
+width:100%;
+padding:12px;
+margin-bottom:10px;
+border-radius:10px;
+border:1px solid #ccc;
+font-family:'Poppins',sans-serif;
+transition:0.3s;
+}
+
+.info-box input:focus{
+background:#ffffff;
+border-color:#FFC107;
+outline:none;
+box-shadow:0 0 6px rgba(255,193,7,0.4);
+}
 </style>
+  .qr-section{
+text-align:center;
+margin-top:15px;
+margin-bottom:20px;
+}
+
+.qr-img{
+width:120px;
+margin-top:10px;
+}
+
+.qr-note{
+font-size:14px;
+color:#1e3c72;
+margin-top:8px;
+font-style:italic;
+}
 </head>
 
 <body>
@@ -131,16 +168,27 @@ to{opacity:1;transform:translateY(0);}
   <span class="sub-title">Hệ thống giáo dục HPG</span>
 </h1>
 
+<div class="qr-section">
+  <img src="assets/qr.png" class="qr-img">
+  <p class="qr-note">Quét mã QR để nhận kết quả</p>
+</div>
+
 <div class="guide">
 <h3>Hướng dẫn</h3>
 <p>
 Hãy đọc từng câu dưới đây. Nếu bạn đồng ý với câu đó, hãy đánh dấu chọn.
 Không có câu trả lời nào là sai. Hãy trả lời trung thực theo sở thích của bạn. Sau đó, bạn hãy nhấn "Xem kết quả" để biết được mình sẽ phù hợp với ngành nghề nào.
 </p>
-</div>
+<div class="info-box">
 
-<input type="text" id="name" placeholder="Họ và tên" required style="width:100%;padding:10px;margin-bottom:10px;">
-<input type="text" id="phone" placeholder="Số điện thoại" required style="width:100%;padding:10px;">
+<input type="text" id="studentName" placeholder="Họ tên học sinh" required>
+<input type="text" id="class" placeholder="Lớp" required>
+<input type="text" id="school" placeholder="Trường" required>
+<input type="text" id="teacher" placeholder="Họ tên giáo viên chủ nhiệm">
+<input type="text" id="parent" placeholder="Họ tên phụ huynh">
+<input type="tel" id="phone" placeholder="Số điện thoại gửi kết quả" required>
+
+</div>
 
 <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
 
@@ -292,6 +340,7 @@ result:topGroups.join(" & ")
 
 </body>
 </html>
+
 
 
 
