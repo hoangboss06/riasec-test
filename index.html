@@ -322,11 +322,8 @@ new Chart(ctx, {
 });
 
 fetch("https://script.google.com/macros/s/AKfycbxBSMbhy4sTX8d0QCC-Enc63AD8mYj0s2bavGUxc3sa7rN6P9wK1KrjS3ZhODv1TBCkbg/exec", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
+ method: "POST",
+  body: new URLSearchParams({
     studentName: document.getElementById("studentName").value,
     class: document.getElementById("class").value,
     school: document.getElementById("school").value,
@@ -349,6 +346,7 @@ fetch("https://script.google.com/macros/s/AKfycbxBSMbhy4sTX8d0QCC-Enc63AD8mYj0s2
 
 </body>
 </html>
+
 
 
 
