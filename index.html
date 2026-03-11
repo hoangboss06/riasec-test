@@ -321,32 +321,32 @@ new Chart(ctx, {
     }
 });
 
-fetch("https://script.google.com/macros/s/AKfycbzFZ6L2mo5ARv9qxPmbUxYriDOKs6y-PV33EKnHuZHG17krsjSVN3QKq-ISwbCT3EQ/exec",{
-method:"POST",
-mode:"no-cors",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify({
-body:JSON.stringify({
-studentName:document.getElementById("studentName").value,
-class:document.getElementById("class").value,
-school:document.getElementById("school").value,
-teacher:document.getElementById("teacher").value,
-parent:document.getElementById("parent").value,
-phone:document.getElementById("phone").value,
-R:scores.R,
-I:scores.I,
-A:scores.A,
-S:scores.S,
-E:scores.E,
-C:scores.C,
-result:topGroups.join(" & ")
-})
+fetch("https://script.google.com/macros/s/AKfycbzFZ6L2mo5ARv9qxPmbUxYriDOKs6y-PV33EKnHuZHG17krsjSVN3QKq-ISwbCT3EQ/exec", {
+  method: "POST",
+  mode: "no-cors",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    studentName: document.getElementById("studentName").value,
+    class: document.getElementById("class").value,
+    school: document.getElementById("school").value,
+    teacher: document.getElementById("teacher").value,
+    parent: document.getElementById("parent").value,
+    phone: document.getElementById("phone").value,
+    R: scores.R,
+    I: scores.I,
+    A: scores.A,
+    S: scores.S,
+    E: scores.E,
+    C: scores.C,
+    result: topGroups.join(" & ")
+  })
 });
 }
 </script>
 
 </body>
 </html>
+
 
 
 
