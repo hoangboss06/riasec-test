@@ -323,6 +323,7 @@ new Chart(ctx, {
 
 fetch("https://script.google.com/macros/s/AKfycbywkfoyAmlMPB4XVgglkFkiSrL3AduMelaB27w7UvXqEvZiaUaJ2ulg5MAXccpv8hlVqw/exec", {
  method: "POST",
+  mode: "no-cors",
   body: new URLSearchParams({
     studentName: document.getElementById("studentName").value,
     class: document.getElementById("class").value,
@@ -346,6 +347,7 @@ fetch("https://script.google.com/macros/s/AKfycbywkfoyAmlMPB4XVgglkFkiSrL3AduMel
 
 </body>
 </html>
+
 
 
 
