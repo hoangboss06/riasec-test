@@ -136,8 +136,7 @@ border-color:#FFC107;
 outline:none;
 box-shadow:0 0 6px rgba(255,193,7,0.4);
 }
-</style>
-  .qr-section{
+    .qr-section{
 text-align:center;
 margin-top:15px;
 margin-bottom:20px;
@@ -154,6 +153,9 @@ color:#1e3c72;
 margin-top:8px;
 font-style:italic;
 }
+  
+</style>
+
 </head>
 
 <body>
@@ -278,7 +280,7 @@ R:${scores.R} | I:${scores.I} | A:${scores.A} |
 S:${scores.S} | E:${scores.E} | C:${scores.C}</p>
 `;
 
-result.innerHTML=html;
+result.innerHTML = html + '<canvas id="radarChart" style="margin-top:30px;"></canvas>';
   const ctx = document.getElementById('radarChart');
 
 new Chart(ctx, {
@@ -345,6 +347,7 @@ result:topGroups.join(" & ")
 
 </body>
 </html>
+
 
 
 
